@@ -1,10 +1,9 @@
 # alurapic
 
-alurapic
 
 Install Node.js;
 
-Go to project folder;
+on the project folder;
 
 Run npm install;
 
