@@ -5,7 +5,12 @@
 <div class="row">
   <div class="col-md-12">
     <form>
-      <input ng-model="filtro" class="form-control" placeholder="filtrar" ng-model-options="{debounce: 500}">
+      <div class="input-group">
+        <span class="input-group-btn">
+          <a href="fotos/new" class="btn btn-primary">Nova Foto</a>
+        </span>
+        <input ng-model="filtro" class="form-control" placeholder="Filtrar Fotos ..." ng-model-options="{debounce: 500}">
+      </div>
     </form>
   </div><!--end of the col-md-12 -->
 </div><!--end of the row -->
