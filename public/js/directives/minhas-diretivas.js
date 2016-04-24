@@ -29,4 +29,18 @@ angular.module('minhasDiretivas',[])
     ddo.templateUrl = 'js/directives/minha-foto.html';
 
     return ddo;
+})
+.directive('meuBotaoPerigo', function(){
+  var ddo = {};
+
+  ddo.restrict = "E"; //Element
+  ddo.scope = {
+      nome: '@',
+      acao: '&' //here we want to pass a param and not a String.. So we used &(expression)
+  };
+
+  ddo.template = '<button ng-click="acao(foto)" class="btn btn-danger btn-block">{{nome}}</button>';
+
+  return ddo;
+
 });
