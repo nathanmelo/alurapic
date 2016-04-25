@@ -1,24 +1,17 @@
-angular.module('alurapic').controller('FotoController',function($scope, $http, $routeParams){
+angular.module('alurapic').controller('FotoController',function($scope, recursoFoto, $routeParams){
 
   //our variables
   $scope.foto  = {};
   $scope.mensagem = '';
-  var recursoFoto = $resource('v1/fotos/:fotoId', null, {
-    update : {
-      method: 'PUT'
-    }
-  });
+
   //here is the editition logic
   if ($routeParams.fotoId){
 
-    $http.get('v1/fotos/' + $routeParams.fotoId)
-    .success(function(foto){
+    recursoFoto.get({fotoId : $routeParams.fotoId}, function(foto){
       $scope.foto = foto;
-    })
-      //exception can happen :(
-    .error(function(error){
+    }, function(error){
       console.log(error);
-      $scope.mensagem = 'Não foi possível obter a foto.';
+      $scope.mensagem = "Não foi possivel obter a foto";
     });
   }
 
@@ -31,7 +24,7 @@ angular.module('alurapic').controller('FotoController',function($scope, $http, $
         //edition function is called
         recursoFoto.update({fotoId : $scope.foto._id}, $scope.foto, function(){
           $scope.mensagem = 'A foto '+ $scope.foto.titulo + ' foi alterada com sucesso';
-        }), function(error){
+        }, function(error){
           $scope.mensagem = 'Não foi possível alterar a foto.';
           console.log(error);
         });
