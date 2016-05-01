@@ -43,4 +43,37 @@ angular.module('minhasDiretivas',[])
 
   return ddo;
 
+})
+.directive('meuFoco', function(){
+    var ddo = {};
+
+    ddo.restrict = "A";
+    //& = expression, @ = string, = permit control directive e directive control communication (two-way)
+
+      /**
+      //if we don't use watch is not necessary for us to use this
+      ddo.scope = {
+        focado : '='
+      };
+      **/
+    //$scope is the scope of controller, this scope is the scope of the directive
+    //can acess the scope and the element where our tag (meu-foco) is.
+    ddo.link = function(scope, element){
+      scope.$on('fotoCadastrada', function(){
+        element[0].focus();
+      });
+    }
+    return ddo;
 });
+      /**
+      //if we use a lot of watches it coud be expensive for load of our page
+      scope.$watch('focado', function(){
+        if(scope.focado){
+          element[0].focus();
+          scope.focado = false;
+        }
+
+
+      });
+      <a href="/" class="btn btn-primary" meu-foco focado="focado">Voltar</a>
+      **/
